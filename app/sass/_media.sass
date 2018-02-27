@@ -1,0 +1,208 @@
+@import "vars"
+
+=circle($radius)
+	width: $radius
+	height: $radius
+	// line-height: $radius*20/100
+
+	-webkit-border-radius: 50%
+	-moz-border-radius: 50%
+	-o-border-radius: 50%
+	border-radius: 50%
+/*==========  Desktop First  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px)
+	/**/
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px)
+	/**/
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px)
+	/**/
+
+	header, #form
+		min-height: 360px
+
+	header
+		background-image: $bg1_medium
+
+	#form
+		background-image: $bg3_medium
+
+	#reviews
+		background-image: $bg2_medium
+
+	.menu
+		li
+			display: none
+
+			&.bars
+				display: inline
+
+	h1
+		font-size: 2em
+
+	.bonus-box
+		margin-top: 6em
+
+	.bonus
+		p
+			font-size: 0.8em
+
+	.cars-locations
+		font-size: 1em
+
+	h2
+		font-size: 1em
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px)
+	/**/
+
+	header, #form, #reviews
+		min-height: 120px
+
+	header
+		background-image: $bg1_small
+
+	#form
+		background-image: none
+		background-color: $accent
+		
+		&:before
+			background: none
+
+	#reviews
+		height: 420px
+		background-image: $bg2_small
+
+	h1
+		font-size: 1.2em
+		padding-top: 3em
+
+	.bonus-box
+		width: 90%
+		margin: 1em auto 0
+
+	.bonus
+		width: 100%
+		height: 36px
+		line-height: 36px
+		margin-bottom: 8px
+		background-color: $accent
+		box-shadow: 0 3px 6px 0 rgba(0,0,0,.5)
+		
+		.bonus-icon
+			width: 36px
+			height: 36px
+			border-radius: 0
+			float: left
+			border-right: 1px solid #fff
+
+			i
+				font-size: 1.3em
+				color: #fff
+
+		p
+			position: relative
+			margin: 0
+			font-size: 0.9em
+			font-family: $font-stack
+
+	.placeholder
+			display: block
+
+	.cars-locations
+
+		.locations-list
+			display: none
+			position: absolute
+			right: 0
+			left: 0
+			z-index: 100
+
+		.tab, .placeholder
+			width: 80%
+
+	#cars
+		margin-top: 11em
+
+	#rentForm
+		margin: 15px 0
+
+		h2, label
+			color: $dark-grey
+
+	h2
+		margin: 0.6em 0
+
+	.q
+		background-color: rgba(117,117,117,.4)
+	
+	.tooltip
+		background-color: rgba(51,51,51,.9)
+		color: #fff
+		&:after
+			border-top: 6px solid rgba(51,51,51,.9)
+
+	.btn-lg
+		margin: 14px auto 0
+		background-color: $dark-grey
+
+
+	.tooltip
+		margin: 0 auto
+
+	.tooltip.right
+		margin-right: 0
+		&:after
+			left: 81%
+
+	.delimiter
+		i
+			font-size: 1.2em
+
+	.review-wrapper
+		padding-top: 0
+	.owl-item
+		
+		.item
+
+			p, .u-photo, .u-name
+				padding: 1em 0
+			p
+				width: 100%
+
+	.owl-nav
+		.owl-prev,
+		.owl-next
+			background: none
+			box-shadow: none
+
+			&:hover
+				background: none
+
+		.owl-prev
+			left: -26px
+			padding-right: 0
+
+		.owl-next
+			right: -26px
+			padding-left: 0
+
+	#questionForm	
+		width: 90%
+		padding: 1em 0
+
+	footer
+		font-size: 0.9em
+		padding: 1.5em
+		p
+			margin: 0.6em 0
+
+	.discount
+		font-size: 0.95em
+
+	.owl-carousel
+		margin-top: 0

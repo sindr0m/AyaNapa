@@ -1,0 +1,844 @@
+@import "fonts"
+@import "libs"
+@import "vars"
+
+/*/////////////////////////////////////*/
+/*            COMMON                   */
+/*/////////////////////////////////////*/
+
+*, *:before, *:after
+	-webkit-box-sizing: border-box
+	-moz-box-sizing: border-box
+	box-sizing: border-box
+
+*:focus
+	outline: none
+
+html, body
+	height: 100%
+	overflow-x: hidden
+
+body
+	position: relative
+	margin: 0
+	padding: 0
+	font-size: 14px
+	font-family: $font-stack
+	color: $default-color
+	overflow-y: scroll
+	-webkit-overflow-scrolling: touch
+
+article, aside, footer, header, nav, section
+	display: block
+
+header, #form, #reviews
+	position: relative
+	width: 100%
+	height: auto
+	background-position: center center
+	background-repeat: no-repeat
+	background-attachment: scroll
+	background-size: cover
+	-moz-background-size: cover
+	-webkit-background-size: cover
+	background-position: center
+
+header
+	// position: relative
+	// width: 100%
+	// height: auto
+	// background-position: center center
+	// background-repeat: no-repeat
+	// background-attachment: scroll
+	// background-size: cover
+	// -moz-background-size: cover
+	// -webkit-background-size: cover
+	// background-position: center
+	background-image: $bg1_big
+	min-height: 460px
+	color: #fff
+	// background-image: url(/img/bg1900.jpg)
+	// box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.3)
+	// box-shadow: 0 5px 15px 0 rgba(0,0,0,0.25)
+
+	&:before
+		position: absolute
+		content: ''
+		width: 100%
+		height: 100%
+		top: 0
+		left: 0
+		background-color: rgba(0, 0, 0, .35)
+		// background: url('data:image/false;base64,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')
+
+a,
+.menu a,
+.menu.mobile a
+	&:active, 
+	&:focus, 
+	&:hover, 
+	&:hover:before,
+	&:hover:after
+		outline: 0
+		text-decoration: none
+a
+	letter-spacing: 1px
+
+h1, h2, h3, h4
+	font-family: $font-bold
+	text-align: center
+
+h1, h2
+	text-transform: uppercase
+	letter-spacing: 1px
+
+h2
+	margin: 1em 0
+	color: $dark-grey
+	font-size: 1.3em
+
+h3
+	padding: 0 0 0.8em
+	margin: 0
+
+h1
+	position: relative
+	margin: 0
+	padding-top: 3.5em
+	font-size: 3em
+	// color: #fff
+
+
+	span
+		display: block
+		font-family: $font-stack
+		font-size: 0.6em
+		text-transform: none
+ul
+	list-style-type: none
+
+/*/////////////////////////////////////*/
+/*            MIXINS                   */
+/*/////////////////////////////////////*/
+=transition($transition)
+	-moz-transition: $transition
+	-o-transition: $transition
+	-webkit-transition: $transition
+	transition: $transition
+
+=transform($transform)
+	-webkit-transform: $transform
+	-moz-transform: $transform
+	-ms-transform: $transform
+	transform: $transform
+
+=circle($radius)
+	width: $radius
+	height: $radius
+	// line-height: $radius*20/100
+
+	-webkit-border-radius: 50%
+	-moz-border-radius: 50%
+	-o-border-radius: 50%
+	border-radius: 50%
+
+.fa
+	font: normal normal normal 14px/1 'FontAwesome'
+	font-size: inherit
+	text-rendering: auto
+	-webkit-font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale
+	vertical-align: middle
+
+.fa-vk:before
+	content: "\f189"
+
+.fa-facebook:before
+	content: "\f09a"
+
+.fa-bars:before
+	content: "\f0c9"
+
+.fa-car:before
+	content: "\f1b9"
+
+.fa-umbrella:before
+	content: "\f0e9"
+
+.fa-eur:before
+	content: "\f153"
+
+.fa-thumbs-o-up:before
+	content: "\f087"
+
+.fa-calendar:before
+	content: "\f073"
+
+.fa-caret-down:before
+	content: "\f0d7"
+
+.fa-chevron-left:before
+	content: "\f053"
+
+.fa-chevron-right:before
+	content: "\f054"
+
+/*/////////////////////////////////////*/
+/*              NAV                    */
+/*/////////////////////////////////////*/
+
+.menu
+	position: absolute
+	top: 0
+	right: 0
+	left: 0
+	z-index: 9999
+	font-family: $font-bold
+
+	ul
+		text-align: right
+		// text-align: center
+		margin: 0
+		padding: 0 1.5em 0 0
+		overflow: hidden
+		list-style: none
+
+	li
+		display: inline
+		&.bars
+			display: none
+			position: absolute
+			top: 0
+			right: 0
+			width: 100%
+			height: auto
+			font-size: 1em
+			text-align: right
+			float: none
+
+			a
+				padding: 0.5em 0
+
+		a
+			position: relative
+			display: inline-block
+			margin: 0 1.25em
+			padding: 1em 0
+			font-size: 0.85em
+			color: #fff
+			text-align: center
+			text-transform: uppercase
+
+			&:not(.social):not(.bars-icon):after
+				content: ''
+				position: absolute
+				height: 3px
+				width: 100%
+				left: 0
+				bottom: 0
+				visibility: hidden
+				background-color: $accent
+
+			&:not(.social):not(.bars-icon):hover:after
+				visibility: visible
+				// +transform(scaleX(1))
+
+			&.vk, &.fb
+				i
+					font-size: 1.2em
+
+.menu.mobile
+	padding-top: 3em
+	background-color: rgba(51,51,51, .85)
+
+	ul
+		text-align: center
+
+	li
+		display: inline
+		&.bars 
+			a
+				display: inline-block
+
+		a
+			display: block
+
+			&:hover:after,
+			&:active:after, 
+			&:focus:after,
+				height: 0
+
+			&.social
+				display: inline-block
+				line-height: $menu_social_icon_size
+				font-size: $menu_social_icon_size
+				margin: 0.5em 
+				padding-top: 8px
+				+circle(40px)
+
+	.vk
+		background-color: $vk-color
+	
+	.fb
+		background-color: $fb-color
+
+/*/////////////////////////////////////*/
+/*              HEADER                 */
+/*/////////////////////////////////////*/
+
+.bonus-box
+	position: absolute
+	left: 0
+	right: 0
+	width: 80%
+	height: auto
+	margin: 7em auto 0
+	font-family: $font-bold
+
+.bonus
+	width: 25%
+	float: left
+	text-align: center
+
+	.bonus-icon
+		display: inline-block
+		+circle(5em)
+		// border: 3px solid #fff
+		// background-color: rgba(255,255,255,0.)
+		// background-color: rgba(0,0,0,0.3)
+		background-color: $accent
+		// background-color: rgba(255,193,7,0.3)
+
+		i
+			font-size: 2.25em
+			line-height: 2.25em
+			color: #fff
+
+	p
+		font-size: 12px
+		text-transform: uppercase
+		letter-spacing: 1px
+
+/*/////////////////////////////////////*/
+/*           LOCATIONS                 */
+/*/////////////////////////////////////*/
+
+.cars-locations
+	position: relative
+	text-align: center
+	font-size: 1.25em
+
+	ul
+		margin: 0
+		padding: 0
+
+.show
+	display: block
+
+.tab
+	display: inline-block
+	width: 19%
+	a
+		display: block
+		position: relative
+		width: 100%
+		height: auto
+		padding: 0.8em
+		text-align: center
+		background-color: $dark-grey
+		color: #fff
+
+		@extend .hover 
+
+.active
+	a
+		background-color: $accent
+		color: $dark-grey
+		cursor: default
+
+.tab.active
+	a
+		&:hover
+				background-color: $accent
+				// color: #fff
+
+		&:hover:after
+			visibility: hidden
+
+.placeholder
+	display: none
+	position: relative
+	margin: 0 auto
+	padding: 1em
+	border: 2px solid $dark-grey
+	color: $dark-grey
+	cursor: pointer
+
+.up:after,
+.down:after
+	position: absolute
+	right: 1em
+	color: $dark-grey
+
+.up:after
+	content: "\25B2"
+
+.down:after
+	content: "\25BC"
+
+/*/////////////////////////////////////*/
+/*              CARS                   */
+/*/////////////////////////////////////*/
+
+.cars-wrapper
+	margin: 2em 0
+
+.discount
+	width: 90%
+	text-align: center
+	color: $dark-grey
+	margin: 0 auto 1em
+
+.card
+	height: 280px
+	max-width: 320px
+	margin: 0 auto
+
+	&:hover
+		h3
+			+transform(scale(1.2))
+	img
+		display: block
+		max-width: 100%
+		height: auto
+		margin: 0 auto
+
+.info
+	height: 50%
+	// width: 100%
+	padding: 1em 2em
+	font-size: 0.9em
+
+	h3
+		color: $dark-grey
+		+transform(scale(1))
+		+transition(0.3s ease-in-out)
+
+	p
+		line-height: 28px
+		margin: 0.8em 0
+
+.alignleft
+	float: left
+	width: 60%
+	text-align: left
+
+.alignright
+	float: right
+	width: 40%
+	text-align: right
+	color: $dark-grey
+
+.price
+	color: $accent
+	font-family: $font-bold
+	font-size: 1.5em
+	// line-height: 30px
+	// margin: 0.8em 0.2em 0.8em 0
+	margin-right: 0.2em
+
+/*/////////////////////////////////////*/
+/*             BUTTONS                 */
+/*/////////////////////////////////////*/
+.hover
+	+transition(all 0.25s ease)
+	&:after
+		content: ''
+		position: absolute
+		display: block
+		height: 100%
+		width: 100%
+		left: 0
+		bottom: 0
+		border: 2px solid $accent
+		visibility: hidden
+
+	&:hover
+		background-color: #fff
+		color: $dark-grey
+	&:hover:after
+		visibility: visible
+
+.btn
+	display: block
+	position: relative
+	color: #fff
+	text-align: center
+	letter-spacing: 1px
+	text-transform: uppercase
+	outline: 0
+	border: none
+	text-decoration: none
+	
+.btn-sm
+	height: 28px
+	line-height: 28px
+	margin: 0.8em 0
+	font-size: 0.9em
+	background-color: $accent
+
+	@extend .hover
+
+.btn-lg
+	height: 3em
+	width: 10em
+	margin: 1em auto
+	font-size: 0.8em
+	// background-color: $dark-grey
+	background-color: $accent
+	box-shadow: 0 3px 6px 0 rgba(0,0,0,.2)
+
+	&:hover
+		+transition(all 0.25s ease)
+		// background-color: rgba(100,221,23, .9)
+
+/*/////////////////////////////////////*/
+/*              RENT FORM              */
+/*/////////////////////////////////////*/
+
+#form
+	min-height: 460px
+	background-image: $bg3_big
+	// background-color: $accent
+
+	&:before
+		position: absolute
+		content: ''
+		width: 100%
+		height: 100%
+		// background-color: rgba(100,221,23, .5)
+		// background-color: rgba(255,255,255, .5)
+		background-color: rgba(0,0,0, .35)
+
+	h2
+		color: #fff
+
+	.btn-lg
+		&:hover
+			color: $dark-grey
+
+#rentForm, #questionForm
+	position: relative
+	width: 100%
+	height: auto
+	margin: 30px 0 0
+	padding: 0 1em
+	// border-top: 3px solid $accent
+	// background: rgba(255, 255, 255, 0.7)
+	// background-color: rgba(100,221,23, 0.8)
+	// background-color: rgba(255,193,7,0.6)
+
+	input, select, textarea
+		margin-bottom: 0.5em
+		border: 1px solid #d9d9d9
+		// border: 1px solid $grey
+
+	input:not([type=checkbox]), select, textarea
+		width: 100%
+
+	input:not([type=checkbox]), select
+		display: inline-block
+		height: 40px
+		line-height: 40px
+
+	input:focus,
+	select:focus,
+	textarea:focus
+		border-color: $accent
+
+	input
+		padding: 0 0.5em
+
+	select
+		padding-left: 0.5em
+		appearance: none
+		-moz-appearance: none
+		-webkit-appearance: none
+		cursor: pointer
+		background-color: #fff
+
+	select, input[type=checkbox]
+		cursor: pointer
+
+	label
+		color: #fff
+		font-size: 0.9em
+
+	textarea
+		display: block
+		width: 100%
+		padding: 0.5em
+		overflow: auto
+		resize: none
+
+	.form-input
+		position: relative
+		width: 100%
+		height: auto
+		// cursor: pointer
+
+		i
+			position: absolute
+			top: 50%
+			right: 10px
+			// margin-top: 0.65em
+			color: $dark-grey
+
+.q
+	display: inline-block
+	+circle(16px)
+	line-height: 16px
+	font-size: 0.8em
+	text-align: center
+	// background-color: rgba(117,117,117,.4)
+	background-color: rgba(117,117,117,.8)
+	margin: 0
+	padding: 0
+	border: none
+	// background-color: $accent
+	color: $grey
+	cursor: pointer
+
+	&:hover
+		// background-color: $dark-grey
+		// background-color: $dark-grey
+		background-color: $accent
+		color: #fff
+
+.tooltip
+	visibility: hidden
+	position: absolute
+	left: 0
+	bottom: 110%
+	width: 240px
+	height: auto
+	padding: 1em
+	font-size: 0.9em
+	// color: #fff
+	color: $dark-grey
+	border-radius: 8px 
+	// background-color: rgba(51,51,51,.9)
+	background-color: rgba(255,255,255,.9)
+	z-index: 999
+	box-shadow: 0 3px 6px 0 rgba(0,0,0,.5)
+
+	&:after
+		position: absolute
+		left: 15%
+		bottom: -6px
+		content: ''
+		width: 0
+		height: 0
+		border-left: 6px solid transparent
+		border-right: 6px solid transparent
+		// border-top: 6px solid rgba(51,51,51,.9)
+		border-top: 6px solid rgba(255,255,255,.9)
+
+.sm:not(:first-child)
+	padding-left: 0
+
+.sm:not(:last-child)
+	padding-right: 6px
+
+.left
+	left: 0
+
+.right
+	right: 0
+
+.delimiter
+	position: relative
+
+	&:after,
+	&:before
+		position: absolute
+		content: ''
+		top: 0
+		top: 6px
+		border: 1px solid #E0E0E0
+		width: 100px
+
+	&:after
+		left: 40px
+	&:before
+		left: -120px
+	i
+		color: #E0E0E0
+		font-size: 1.5em
+
+#about
+	p
+		text-indent: 1em
+
+.heading
+	text-align: center
+	margin-bottom: 15px
+
+/*/////////////////////////////////////*/
+/*            FLATPICKR                */
+/*/////////////////////////////////////*/
+.flatpickr-wrapper
+	display: block
+
+.flatpickr-month,
+.flatpickr-current-month,
+.flatpickr-next-month, 
+.flatpickr-prev-month,
+.flatpickr-next-month svg, 
+.flatpickr-prev-month svg
+	// height: 40px
+
+.flatpickr-next-month,
+.flatpickr-prev-month
+	padding-top: 0
+	padding-bottom: 0
+
+.flatpickr-month,
+.flatpickr-current-month,
+	padding: 0
+
+.flatpickr-day.selected,
+.flatpickr-day.selected:hover,
+.flatpickr-day.selected:focus,
+.flatpickr-day.selected.nextMonthDay,
+.flatpickr-day.selected.prevMonthDay,
+
+	background: #64dd17
+	border-color: #64dd17
+
+.flatpickr-next-month:hover svg, 
+.flatpickr-prev-month:hover svg
+	fill: #64dd17
+
+/*/////////////////////////////////////*/
+/*            REVIEWS                  */
+/*/////////////////////////////////////*/
+#reviews
+	min-height: 460px
+	background-image: $bg2_big
+	&:before
+		position: absolute
+		content: ''
+		width: 100%
+		height: 100%
+		background-color: rgba(255, 255, 255, .8)
+
+/*/////////////////////////////////////*/
+/*           COROUSEL                  */
+/*/////////////////////////////////////*/
+
+.review-wrapper
+	padding-top: 30px
+
+	h2
+		margin-bottom: 0
+	a
+		letter-spacing: 0
+		color: $accent
+		text-decoration: underline
+
+.owl-carousel
+	margin-top: 2em
+
+.owl-item
+
+	.item
+		width: 100%
+		height: auto
+		color: $dark-grey
+		text-align: center
+		padding: 15px
+		// background-color: rgba(255,255,255, 1)
+
+		p, .u-photo, .u-name
+			margin: 0 auto
+			padding: 2em
+
+		p
+			width: 60%
+
+		.u-photo
+			+circle(80px)
+			background-color: $grey
+			background-image: url(/img/user-photo.jpg)
+
+		.u-name
+			font-family: $font-bold
+
+.owl-nav
+
+
+	.owl-prev,
+	.owl-next
+		position: absolute
+		top: calc(50% - 70px)
+		// display: inline-block
+		+circle(50px)
+		line-height: 50px
+		background-color: $accent
+		box-shadow: 0 3px 6px 0 rgba(0,0,0,.2)
+		// box-shadow: 0 2px 4px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23)
+		&:hover
+			// background-color: $dark-grey
+			i
+				color: $grey
+		i
+			font-size: 1.5em
+			color: #fff
+
+	.owl-prev
+		left: 0
+		padding-right: 5px
+
+	.owl-next
+		right: 0
+		padding-left: 5px
+
+/*/////////////////////////////////////*/
+/*          QUESTION FORM              */
+/*/////////////////////////////////////*/
+#qForm
+	min-height: 240px
+	// background-color: $grey
+	background-color: $accent
+
+#questionForm
+	width: 60%
+	padding: 4em 0
+	margin: 0 auto
+
+	h2
+	.btn-lg
+		background-color: $dark-grey
+		&:hover
+			color: $accent
+
+	input, textarea
+		margin-bottom: 1.5em
+
+
+/*/////////////////////////////////////*/
+/*             FOOTER                  */
+/*/////////////////////////////////////*/
+footer
+	width: 100%
+	height: auto
+	padding: 15px
+	text-align: center
+	background-color: $dark-grey
+	color: #fff
+	font-size: 1em
+
+
+
+@import "media" // Всегда в конце
