@@ -9,14 +9,26 @@
 	-moz-border-radius: 50%
 	-o-border-radius: 50%
 	border-radius: 50%
-/*==========  Desktop First  ==========*/
 
-/* Large Devices, Wide Screens */
-@media only screen and (max-width : 1200px)
-	/**/
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px)
-	/**/
+	.review-wrapper
+		padding-top: 0
+	.owl-nav
+		.owl-prev,
+		.owl-next,
+			width: 40px
+		.owl-prev
+			left: -20px
+		.owl-next
+			right: -20px
+	.owl-item
+		.item
+			.u-photo
+				width: 120px
+			.item-txt
+				width: 90%
+
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px)
 	/**/
@@ -28,7 +40,8 @@
 		background-image: $bg1_medium
 
 	#form
-		background-image: $bg3_medium
+		// background-image: $bg3_medium
+		background-image: url(/img/bg3_sm.jpg)
 
 	#reviews
 		background-image: $bg2_medium
@@ -66,15 +79,15 @@
 	header
 		background-image: $bg1_small
 
-	#form
-		background-image: none
-		background-color: $accent
-		
-		&:before
-			background: none
+	// #form
+	// 	background-image: url(/img/bg3_sm.jpg)
+		// background-image: none
+
+		// &:before
+		// 	background: none
 
 	#reviews
-		height: 420px
+		height: auto
 		background-image: $bg2_small
 
 	h1
@@ -132,7 +145,7 @@
 		margin: 15px 0
 
 		h2, label
-			color: $dark-grey
+			// color: $dark-grey
 
 	h2
 		margin: 0.6em 0
@@ -140,15 +153,15 @@
 	.q
 		background-color: rgba(117,117,117,.4)
 	
-	.tooltip
-		background-color: rgba(51,51,51,.9)
-		color: #fff
-		&:after
-			border-top: 6px solid rgba(51,51,51,.9)
+	// .tooltip
+	// 	background-color: rgba(51,51,51,.9)
+	// 	color: #fff
+	// 	&:after
+	// 		border-top: 6px solid rgba(51,51,51,.9)
 
-	.btn-lg
-		margin: 14px auto 0
-		background-color: $dark-grey
+	// .btn-lg
+	// 	margin: 14px auto 0
+	// 	background-color: $dark-grey
 
 
 	.tooltip
@@ -163,33 +176,52 @@
 		i
 			font-size: 1.2em
 
-	.review-wrapper
-		padding-top: 0
+	// #reviews
+	// 	.col-xs-12
+	// 		padding: 0
+
+	// .review-wrapper
+	// 	padding-top: 0
+	
 	.owl-item
-		
 		.item
+			p:nth-child(2)
+				width: 90%
+	// 		flex-flow: column wrap
+			.u-photo
+				// width: 120px
+	// 			margin-top: 2rem
 
-			p, .u-photo, .u-name
-				padding: 1em 0
-			p
-				width: 100%
+	// 		.item-txt
+	// 			display: block
+	// 			width: 100%
+	// 			p
+	// 				text-align: center
 
-	.owl-nav
-		.owl-prev,
-		.owl-next
-			background: none
-			box-shadow: none
+	// 		p, .u-photo, .u-name
+	// 			// padding: 1em 0
+	// 		p
+	// 			// width: 100%
 
-			&:hover
-				background: none
+	// 	.owl-prev,
+	// 	.owl-next
+	// 		width: 28px
+	// 		background: none
+	// 		box-shadow: none
+
+	// 		&:hover
+	// 			i
+	// 				color: #64dd17
+				// background: none
 
 		.owl-prev
-			left: -26px
-			padding-right: 0
+
+		// 	left: -26px
+		// 	padding-right: 0
 
 		.owl-next
-			right: -26px
-			padding-left: 0
+		// 	right: -26px
+		// 	padding-left: 0
 
 	#questionForm	
 		width: 90%

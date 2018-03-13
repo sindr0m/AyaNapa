@@ -11,7 +11,6 @@
 				items: 1,
 				center: true,
 				navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
-				// autoplay: true,
 			});
 
 			// Flatpickr calendar
@@ -22,10 +21,17 @@
 				minDate: "today",
 				defaultDate: new Date(),
 				enableTime: true,
-				time_24hr: true
+				time_24hr: true,
+				onReady: function(rawdate, altdate, instance) {
+					$('<div class="confirmBtn"><i></i><i></i></div>').appendTo('.flatpickr-time').click(function() {
+						instance.close();
+						// test.getDataForm();
+					});
+					$('.flatpickr-time .confirmBtn:eq(1)').remove();
+				}
 			},
 			this.checkInCalendar = flatpickr("#checkInDate", Object.assign(this.calendar_cfg, {
-				
+
 			})),
 			this.checkOutCalendar = flatpickr("#checkOutDate", Object.assign(this.calendar_cfg, {
 
@@ -33,6 +39,11 @@
 
 			self.setUpListeners();
 			self.changePlaceholderTxt();
+			// Cute reviews
+			this.reviews = document.querySelectorAll(".item p:nth-child(2)");
+			Array.prototype.slice.call(this.reviews).forEach(self.reviewTruncate);
+
+			// this.showErrMsg("email", "Введите имя");
 		},
 
 		setUpListeners: function(){
@@ -70,7 +81,7 @@
 			self.changePlaceholderTxt();
 			self.toggleLocationBox();
 
-			return true;
+			return;
 		},
 
 		changePlaceholderTxt: function(txt) {
@@ -79,7 +90,7 @@
 			txt = (typeof txt !== 'undefined') ? txt : location;
 			$('.placeholder').text(txt);
 
-			return true;
+			return;
 		},
 
 		toggleLocationBox: function(){
@@ -97,7 +108,51 @@
 				placeholder.removeClass('down').addClass('up');
 			}
 
-			return true;
+			return;
+		},
+
+		// Cut review if text > 8 lines
+		reviewTruncate: function(el) {
+			// console.log(el.scrollHeight, el.offsetHeight);
+			if (el.scrollHeight > (el.offsetHeight)){
+				el.classList.add("cute-text");
+			}
+		},
+
+		/**
+		* @param {String} text  - PopUp message (Ваша заявка принята)
+		*/
+		showPopUp: function(text) {
+			var popUp = document.createElement('div'),
+			popUpMsg = '<div class="popUpMsg"><p>'+ text +'</p></div>';
+
+			popUp.setAttribute('id', 'popUp');
+			popUp.classList.add("popUp");
+			popUp.innerHTML = popUpMsg.trim();
+			document.body.appendChild(popUp);
+
+			setTimeout(function() {
+				document.body.removeChild(document.getElementById('popUp'));
+			}, 2000);
+		},
+
+		/**
+		* @param {String} target - Blank form field
+		* @param {String} msg  - Error message
+		*/
+		showErrMsg: function(target, msg) {
+			var el = document.querySelector('[name='+ target +']'),
+				errorMsg = document.createElement('div');
+
+			// remove last error message
+			document.querySelectorAll('.error').forEach(function(err){
+				err.parentNode.removeChild(err);
+			});
+
+			errorMsg.classList.add('error');
+			errorMsg.innerHTML = msg;
+			el.focus();
+			el.parentNode.appendChild(errorMsg);
 		},
 
 	}
